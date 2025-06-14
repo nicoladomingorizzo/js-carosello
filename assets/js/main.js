@@ -82,34 +82,33 @@ for (let i = 0; i < images.length; i++) {
     imgEl.addEventListener('click', () => {
         const thumbId = Number(imgEl.getAttribute('data-thumb-id'));
         activeImage = thumbId;
-        renderPreviewImage(activeImage, images, imageEl)
-    })
+        renderPreviewImage(activeImage, images, imageEl);
+    });
     // inserire in pagina nell'elemento della dom prestabilito
     thumbnailsEl.appendChild(divEl);
-    //setinterval per scorrimento foto automatico
-    //clear setinterval per stoppare l'immagine quando il mouse passa sopra
 };
 
+//setinterval per scorrimento foto automatico
 let intervalId = setInterval(next, 2000);
 
+//clear setinterval per stoppare l'immagine quando il mouse passa sopra
 carouselEl.addEventListener('mouseenter', () => {
     console.log('entered')
     clearInterval(intervalId);
-})
+});
 //set interval quando il mouse si sposta dall'immagine
 carouselEl.addEventListener('mouseleave', () => {
     console.log('leave')
     intervalId = setInterval(next, 2000);
-
-})
+});
 
 // Funzioni
 function renderPreviewImage(index, arr, nodeEl) {
-    nodeEl.innerHTML = `<img class="img-fluid" src="./assets/img/${arr[index].image}" alt="${arr[index].title}">`
+    nodeEl.innerHTML = `<img class="img-fluid h-100 object-fit-cover ratio ratio-16-9" src="./assets/img/${arr[index].image}" alt="${arr[index].title}">`
 };
 
 function next() {
-    console.log('autoplay')
+    console.log('autoplay');
     activeImage++;
     if (activeImage === images.length) {
         activeImage = 0;
